@@ -32,6 +32,8 @@ class ContactRvAdapter(var contactList:List<Contact>):
             tvAddress.text=currentContact.address
 
 
+
+
             Picasso.get()
                 .load(currentContact.image)
                 .resize(300,300)
@@ -45,7 +47,9 @@ class ContactRvAdapter(var contactList:List<Contact>):
                 intent.putExtra("PHONE_NUMBER",currentContact.phone)
                 intent.putExtra("EMAIL",currentContact.email)
                 intent.putExtra("ADDRESS",currentContact.address)
-//                intent.putExtra("IMAGE",currentContact.image)
+
+//                intent.putExtra("CALL",currentContact.call)
+                intent.putExtra("IMAGE",currentContact.image)
                 context.startActivity(intent)
             holder.binding.imgContact.setOnClickListener {
                 Toast.makeText(context,"you have clicked in my face",Toast.LENGTH_SHORT)

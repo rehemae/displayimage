@@ -7,37 +7,39 @@ import android.widget.ImageView
 import android.widget.TextView
 import dev.rehema.mycontact.databinding.ActivityViewContact2Binding
 import android.widget.Toast
+import com.squareup.picasso.Picasso
+import dev.rehema.mycontact.databinding.ActivityMainBinding
 
 
 class ViewContactActivity2 : AppCompatActivity() {
-    lateinit var tvName1:TextView
-    lateinit var tvPhone_number:TextView
-    lateinit var tvEmail1:TextView
-    lateinit var tvAdress:TextView
-    lateinit var imgPhoto:ImageView
+    lateinit var binding: ActivityViewContact2Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_contact2)
-        tvName1=findViewById(R.id.tvName1)
-        tvPhone_number=findViewById(R.id.tvPhone_number)
-        tvEmail1=findViewById(R.id.tvEmail1)
-        tvAdress=findViewById(R.id.tvAddress)
-        imgPhoto=findViewById(R.id.imgPhoto)
+        binding = ActivityViewContact2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         getExtras()
     }
-    fun getExtras(){
-        val Extras=intent.extras
-        val name= Extras?.getString("NAME","")
-        val phone=Extras?.getString("PHONE_NUMBER","")
-        val adress=Extras?.getString("ADDRESS","")
-        val email=Extras?.getString("EMAIL","")
-        val image=Extras?.getString("IMAGE","")
-//        Toast.makeText(this,name,Toast.LENGTH_SHORT).show()
-//        Toast.makeText(this,phone,Toast.LENGTH_SHORT).show()
-        tvName1.text=name
-        tvPhone_number.text=phone
-        tvAdress.text=adress
-        tvEmail1.text=email
+
+    fun getExtras() {
+        val Extras = intent.extras
+        var name = Extras?.getString("NAME")
+        var phone = Extras?.getString("PHONE_NUMBER")
+        var email = Extras?.getString("EMAIL")
+        var adress = Extras?.getString("ADDRESS")
+        var image = binding.imgPhoto
+
+        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, phone, Toast.LENGTH_SHORT).show()
+        binding.tvName1.text = name
+        binding.tvPhoneNumber.text = phone
+        binding.tvEmail1.text = email
+        binding.tvAdress.text = adress
+        Picasso.get().load(intent.getStringExtra("IMAGE")).into(image)
+
+
+//        imgPhoto.image=image
 
 
     }
